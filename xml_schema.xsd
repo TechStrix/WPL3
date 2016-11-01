@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                     elementFormDefault="qualified">
+
+
+<xs:element name="lastname" type="flnametype"/>
+<xs:element name="midname" type="mnametype"/>
+<xs:element name="firstname" type="flnametype"/>
+
+<xs:element name="publishername" type="pnametype"/>
+<xs:element name="street" type="pstreettype"/>
+<xs:element name="city" type="pcitytype"/>
+<xs:element name="zip" type="pziptype"/>
+<xs:element name="country" type="pcountrytype"/>
+
+<xs:element name="btitle" type="btitletype"/>
+<xs:element name="bdate" type="xs:date"/>
+
+
+<xs:element name="book" type="bookinfo"/>
+
+<!--Name Type for first and last names, city-->
+
+<xs:simpleType name="flnametype">
+  <xs:restriction base="xs:string">
+    <xs:pattern value="[A-Z][a-z]+"/>
+  </xs:restriction>
+</xs:simpleType>
+
+<!--Name Type for middle names-->
+
+
+<xs:simpleType name="mnametype">
+  <xs:restriction base="xs:string">
+    <xs:pattern value="[A-Z]\."/>
+  </xs:restriction>
+</xs:simpleType>
+
+<!--Name Type for publisher names-->
+
+<xs:simpleType name="pnametype">
+  <xs:restriction base="xs:string">
+    <xs:pattern value="[A-Z][a-z]+(\s[A-Z][a-z]+)+|[A-Z][a-z]+"/>
+  </xs:restriction>
+</xs:simpleType>
+
+<!--Publisher Address-->
+<!--Street-->
+<xs:simpleType name="pstreettype">
+  <xs:restriction base="xs:string">
+    <xs:pattern value="[0-9]+(\s[A-Z][a-z]+)+"/>
+  </xs:restriction>
+</xs:simpleType>
+
+<!--City-->
+
+<xs:simpleType name="pcitytype">
+  <xs:restriction base="xs:string">
+    <xs:pattern value="[A-Z][a-z]+(\s[A-Z][a-z]+)+|[A-Z][a-z]+"/>
+  </xs:restriction>
+</xs:simpleType>
+
+<!--Zip Code-->
+
+<xs:simpleType name="pziptype">
+  <xs:restriction base="xs:int">
+    <xs:minInclusive value="11111"/>
+    <xs:maxExclusive value="99999"/>
+  </xs:restriction>
+</xs:simpleType>
+
+
+<!--Country-->
+<xs:simpleType name="pcountrytype">
+  <xs:restriction base="xs:string">
+    <xs:pattern value="[A-Z]+"/>
+  </xs:restriction>
+</xs:simpleType>
+
+
+<!--Book Information-->
+<!--Title-->
+
+<xs:simpleType name="btitletype">
+  <xs:restriction base="xs:string">
+    <xs:pattern value="[A-Z][a-z]+(\s[A-Z][a-z]+)+"/>
+    <xs:maxLength value="100" />
+  </xs:restriction>
+</xs:simpleType>
+
+
+<!--Price-->
+
+
+<xs:element name="bprice">
+    <xs:complexType>
+        <xs:simpleContent>
+            <xs:extension base="xs:decimal">
+                <xs:attribute name="currency">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="pounds" />
+                            <xs:enumeration value="euros" />
+                            <xs:enumeration value="dollars" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+</xs:element>
+
+
+<!--Publication date to be defined while defining element-->
+
+
+
+<!--Creating complex types for Author Information-->
+<xs:element name="authorinfo">
+<xs:complexType>
+  <xs:sequence>
+    <xs:element ref="lastname"/>
+    <xs:element ref="midname"/>
+    <xs:element ref="firstname"/>
+  </xs:sequence>
+</xs:complexType>
+</xs:element>
+<!--Creating complex types for Publisher Name Information-->
+
+<xs:complexType name="publishernameinfo">
+  <xs:sequence>
+    <xs:element ref="publishername"/>
+  </xs:sequence>
+</xs:complexType>
+
+
+<!--Creating Publisher Info which contains Publisher name as base and publisher address as seperate-->
+<xs:element name="publisherinfo">
+<xs:complexType >
+  <xs:complexContent>
+    <xs:extension base="publishernameinfo">
+      <xs:sequence>
+        <xs:element ref="street"/>
+        <xs:element ref="city"/>
+        <xs:element ref="zip"/>
+        <xs:element ref="country"/>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+</xs:element>
+
+<!--Creating complex type for Book Info-->
+
+<xs:complexType name="bookinfo">
+  <xs:sequence>
+    <xs:element ref="btitle"/>
+    <xs:element ref="bprice"/>
+    <xs:element ref="bdate"/>
+    <xs:element ref="authorinfo"/>
+    <xs:element ref="publisherinfo"/>
+  </xs:sequence>
+</xs:complexType>
+
+
+<!--Creating element for Books containing book element-->
+
+<xs:element name="books">
+  <xs:complexType>
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="book"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+
+</xs:schema>

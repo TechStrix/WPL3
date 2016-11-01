@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xml_schema.xsd">
+<book>
+    <btitle>The Inferno</btitle>
+    <bprice currency = "dollars">19.99</bprice>
+    <bdate>2013-05-14</bdate>
+    <authorinfo>
+        <lastname>Brown</lastname>
+        <midname>G.</midname>
+        <firstname>Dan</firstname>
+    </authorinfo>
+    <publisherinfo>
+        <publishername>Doubleday</publishername>
+        <street>1745 Broadway</street>
+        <city>New York</city>
+        <zip>11119</zip>
+        <country>USA</country>
+    </publisherinfo>
+</book>
+<book>
+    <btitle>The Da Vinci Code</btitle>
+    <bprice currency = "dollars">19.99</bprice>
+    <bdate>2003-04-01</bdate>
+    <authorinfo>
+        <lastname>Brown</lastname>
+        <midname>G.</midname>
+        <firstname>Dan</firstname>
+    </authorinfo>
+    <publisherinfo>
+        <publishername>Doubleday</publishername>
+        <street>1745 Broadway</street>
+        <city>New York</city>
+        <zip>11119</zip>
+        <country>USA</country>
+    </publisherinfo>
+</book>
+
+<book>
+    <btitle>Harry Potter</btitle>
+    <bprice currency = "dollars">29.99</bprice>
+    <bdate>2013-08-06</bdate>
+    <authorinfo>
+        <lastname>Rowlings</lastname>
+        <midname>K.</midname>
+        <firstname>Joanne</firstname>
+    </authorinfo>
+    <publisherinfo>
+        <publishername>Bloomsbury</publishername>
+        <street>50 Bedford Square</street>
+        <city>London</city>
+        <zip>11119</zip>
+        <country>UK</country>
+    </publisherinfo>
+</book>
+
+</books>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+<style>
+table,th,td {
+  border : 1px solid black;
+  border-collapse: collapse;
+}
+th,td {
+  padding: 5px;
+}
+</style>
+<body>
+
+<button type="button" onclick="loadXMLDoc()">Get my book list</button>
+<!--<button type="button" onclick="loadXMLDoc()">Show Total Prices of books from same city</button>-->
+
+<br><br>
+<table id="demo"></table>
+
+<div id = "price1"></div>
+
+<script>
+function loadXMLDoc() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      myFunction(this);
+    }
+  };
+  xmlhttp.open("GET", "books.xml", true);
+  xmlhttp.send();
+}
+function myFunction(xml) {
+  var i;
+  var xmlDoc = xml.responseXML;
+  //var table="<tr><th>Title</th><th>Price</th><th>date</th><th>lname</th><th>mname</th><th>fname</th><th>pname</th><th>street</th><th>city</th><th>zip</th><th>country</th></tr>";
+  var table="<tr><th>title</th><th>price</th><th>date</th><th>lname</th><th>mname</th><th>fname</th><th>pname</th><th>street</th><th>city</th><th>zip</th><th>country</th></tr>";
+  var x = xmlDoc.getElementsByTagName("book");
+  var y = xmlDoc.getElementsByTagName("authorinfo");
+  var z = xmlDoc.getElementsByTagName("publisherinfo");
+
+
+
+
+  for (i = 0; i <x.length; i++) {
+    table += "<tr><td>" +
+    x[i].getElementsByTagName("btitle")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("bprice")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("bdate")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    y[i].getElementsByTagName("lastname")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    y[i].getElementsByTagName("midname")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    y[i].getElementsByTagName("firstname")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    z[i].getElementsByTagName("publishername")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    z[i].getElementsByTagName("street")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    z[i].getElementsByTagName("city")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    z[i].getElementsByTagName("zip")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    z[i].getElementsByTagName("country")[0].childNodes[0].nodeValue +
+    "</td></tr>";
+  }
+  document.getElementById("demo").innerHTML = table;
+
+
+
+
+
+
+}
+</script>
+
+</body>
+</html>
